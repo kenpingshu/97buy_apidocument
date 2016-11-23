@@ -14,32 +14,41 @@ HOST: http://97buy.apiblueprint.org/
 取得所有任務
 + Response 200 (application/json)
 
-        [
-            {
-                "id": "1",
-                "title": "新光三越滿5000折500",
-                "description": "缺1",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "lat": 0.00,
-                "lng": 0.00
-            },
-            {
-                "id": "2",
-                "title": "Sogo滿5000折1000",
-                "description": "缺2",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "lat": 0.00,
-                "lng": 0.00
-            },
-            {
-                "id": "3",
-                "title": "屈臣仕買2送1",
-                "description": "缺1",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "lat": 0.00,
-                "lng": 0.00
-            }
-        ]
+    + Headers
+
+        Request-Id: 01234567-89ab-cdef-0123-456789abcdef
+
+    + Body
+
+            [
+                {
+                    "id": "1",
+                    "title": "新光三越滿5000折500",
+                    "description": "缺1",
+                    "published_at": "2015-08-05T08:40:51.620Z",
+                    "updated_at": "2012-01-01T13:00:00Z",
+                    "lat": 0.00,
+                    "lng": 0.00
+                },
+                {
+                    "id": "2",
+                    "title": "Sogo滿5000折1000",
+                    "description": "缺2",
+                    "published_at": "2015-08-05T08:40:51.620Z",
+                    "updated_at": "2012-01-01T13:00:00Z",
+                    "lat": 0.00,
+                    "lng": 0.00
+                },
+                {
+                    "id": "3",
+                    "title": "屈臣仕買2送1",
+                    "description": "缺1",
+                    "published_at": "2015-08-05T08:40:51.620Z",
+                    "updated_at":"2012-01-01T13:00:00Z",
+                    "lat": 0.00,
+                    "lng": 0.00
+                }
+            ]
 
 ### Create a New Task [POST]
 
@@ -59,7 +68,8 @@ HOST: http://97buy.apiblueprint.org/
     + Headers
 
             Location: /tasks/4
-    
+            Request-Id: 01234567-89ab-cdef-0123-456789abcdef
+
     + Body
 
             {
@@ -82,8 +92,10 @@ HOST: http://97buy.apiblueprint.org/
 + Response 200 (application/json)
     + Headers
 
+            Request-Id: 01234567-89ab-cdef-0123-456789abcdef
+
     + Body
-    
+
             {
                 "id": "2",
                 "title": "Sogo滿5000折1000",
@@ -108,7 +120,9 @@ HOST: http://97buy.apiblueprint.org/
 
 + Response 201 (application/json)
     + Headers
-    
+
+            Request-Id: 01234567-89ab-cdef-0123-456789abcdef
+
     + Body
 
             {
