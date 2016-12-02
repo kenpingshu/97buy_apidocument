@@ -1,17 +1,17 @@
 FORMAT: 1A
-HOST: http://97buy.apiblueprint.org/
+HOST: http://polls.apiblueprint.org/
 
-# 97buy
+# 97buy user api
 
-97buy api.
+97buy user API規格文件
 
-# Group Task
+# Group User
 
-## Tasks Collection [/tasks]
+## Users Collection [/users]
 
-### List All Tasks [GET]
+### List All Users [GET]
 
-取得所有任務
+取得所有會員
 + Response 200 (application/json)
 
     + Headers
@@ -22,73 +22,55 @@ HOST: http://97buy.apiblueprint.org/
 
             [
                 {
-                    "id": "1",
-                    "title": "新光三越滿5000折500",
-                    "description": "缺1",
-                    "published_at": "2015-08-05T08:40:51.620Z",
-                    "updated_at": "2012-01-01T13:00:00Z",
-                    "lat": 0.00,
-                    "lng": 0.00
+                    "email": "ryan20151016@gmail.com",
+                    "nickname": "賴大帥",
+                    "cellphone": "0952123456"
                 },
                 {
-                    "id": "2",
-                    "title": "Sogo滿5000折1000",
-                    "description": "缺2",
-                    "published_at": "2015-08-05T08:40:51.620Z",
-                    "updated_at": "2012-01-01T13:00:00Z",
-                    "lat": 0.00,
-                    "lng": 0.00
+                    "email": "ken@gmail.com",
+                    "nickname": "許心臟",
+                    "cellphone": "0952654321"
                 },
                 {
-                    "id": "3",
-                    "title": "屈臣仕買2送1",
-                    "description": "缺1",
-                    "published_at": "2015-08-05T08:40:51.620Z",
-                    "updated_at":"2012-01-01T13:00:00Z",
-                    "lat": 0.00,
-                    "lng": 0.00
+                    "email": "jeff@gmail.com",
+                    "nickname": "小廢物",
+                    "cellphone": "0952999999"
                 }
             ]
 
-### Create a New Task [POST]
+### Create a New User [POST]
 
-新增任務
-+ Request (application/json)
+新增會員
++ Request
 
         {
-            "title": "康是美買3送1",
-            "description": "缺2",
-            "published_at": "2015-08-05T08:40:51.620Z",
-            "lat": 0.00,
-            "lng": 0.00,
+            "email": "ryan20151016@gmail.com",
+            "nickname": "賴大帥",
+            "cellphone": "0952123456",
         }
 
-+ Response 201 (application/json)
++ Response 200 (application/json)
 
     + Headers
 
-            Location: /tasks/4
-            Request-Id: 01234567-89ab-cdef-0123-456789abcdef
+            Location: /user/1
 
     + Body
 
             {
-                "id": 4,
-                "title": "康是美買3送1",
-                "description": "缺2",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "lat": 0.00,
-                "lng": 0.00,
+                "email": "ryan20151016@gmail.com",
+                "nickname": "賴大帥",
+                "cellphone": "0952123456",
             }
 
-## Task Collections [/tasks/{task_id}]
+## User Collections [/users/{user_id}]
 
 + Parameters
-    + task_id (required, number, `2`) ... ID of the task in form of an integer
+    + user_id (required, number, `2`) ... ID of the user in form of an integer
 
-### Get Single Task [GET]
+### Get Single user [GET]
 
-取得指定任務
+取得單一會員
 + Response 200 (application/json)
     + Headers
 
@@ -97,28 +79,23 @@ HOST: http://97buy.apiblueprint.org/
     + Body
 
             {
-                "id": "2",
-                "title": "Sogo滿5000折1000",
-                "description": "缺2",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "lat": 0.00,
-                "lng": 0.00,
+                "email": "ryan20151016@gmail.com",
+                "nickname": "賴大帥",
+                "cellphone": "0952123456",
             }
 
-### Update Single Task [PUT]
+### Update Single User [PUT]
 
-更新指定任務
+更新會員
 + Request
 
         {
-            "title": "Sogo滿5000折500",
-            "description": "缺1",
-            "published_at": "2015-08-05T08:40:51.620Z",
-            "lat": 0.00,
-            "lng": 0.00,
+            "email": "ryan20151016@gmail.com",
+            "nickname": "賴大帥",
+            "cellphone": "0952123456",
         }
 
-+ Response 201 (application/json)
++ Response 200 (application/json)
     + Headers
 
             Request-Id: 01234567-89ab-cdef-0123-456789abcdef
@@ -126,10 +103,34 @@ HOST: http://97buy.apiblueprint.org/
     + Body
 
             {
-                "id": "2",
-                "title": "Sogo滿5000折500",
-                "description": "缺1",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "lat": 0.00,
-                "lng": 0.00,
+                "email": "ryan20151016@gmail.com",
+                "nickname": "賴大帥",
+                "cellphone": "0952123456",
+            }
+
+
+
+### Delete User [DELETE]
+
+刪除會員
++ Request
+
+        {
+            "email": "ryan20151016@gmail.com",
+            "nickname": "賴大帥",
+            "cellphone": "0952123456",
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /member/1
+
+    + Body
+
+            {
+                "email": "ryan20151016@gmail.com",
+                "nickname": "賴大帥",
+                "cellphone": "0952123456",
             }
