@@ -1,0 +1,135 @@
+FORMAT: 1A
+HOST: http://97buy.apiblueprint.org/
+
+# 97buy
+
+97buy api.
+
+# Group Task
+
+## Tasks Collection [/tasks]
+
+### List All Tasks [GET]
+
+取得所有任務
++ Response 200 (application/json)
+
+    + Headers
+
+        Request-Id: 01234567-89ab-cdef-0123-456789abcdef
+
+    + Body
+
+            [
+                {
+                    "id": "1",
+                    "title": "新光三越滿5000折500",
+                    "description": "缺1",
+                    "published_at": "2015-08-05T08:40:51.620Z",
+                    "updated_at": "2012-01-01T13:00:00Z",
+                    "lat": 0.00,
+                    "lng": 0.00
+                },
+                {
+                    "id": "2",
+                    "title": "Sogo滿5000折1000",
+                    "description": "缺2",
+                    "published_at": "2015-08-05T08:40:51.620Z",
+                    "updated_at": "2012-01-01T13:00:00Z",
+                    "lat": 0.00,
+                    "lng": 0.00
+                },
+                {
+                    "id": "3",
+                    "title": "屈臣仕買2送1",
+                    "description": "缺1",
+                    "published_at": "2015-08-05T08:40:51.620Z",
+                    "updated_at":"2012-01-01T13:00:00Z",
+                    "lat": 0.00,
+                    "lng": 0.00
+                }
+            ]
+
+### Create a New Task [POST]
+
+新增任務
++ Request (application/json)
+
+        {
+            "title": "康是美買3送1",
+            "description": "缺2",
+            "published_at": "2015-08-05T08:40:51.620Z",
+            "lat": 0.00,
+            "lng": 0.00,
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /tasks/4
+            Request-Id: 01234567-89ab-cdef-0123-456789abcdef
+
+    + Body
+
+            {
+                "id": 4,
+                "title": "康是美買3送1",
+                "description": "缺2",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "lat": 0.00,
+                "lng": 0.00,
+            }
+
+## Task Collections [/tasks/{task_id}]
+
++ Parameters
+    + task_id (required, number, `2`) ... ID of the task in form of an integer
+
+### Get Single Task [GET]
+
+取得指定任務
++ Response 200 (application/json)
+    + Headers
+
+            Request-Id: 01234567-89ab-cdef-0123-456789abcdef
+
+    + Body
+
+            {
+                "id": "2",
+                "title": "Sogo滿5000折1000",
+                "description": "缺2",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "lat": 0.00,
+                "lng": 0.00,
+            }
+
+### Update Single Task [PUT]
+
+更新指定任務
++ Request
+
+        {
+            "title": "Sogo滿5000折500",
+            "description": "缺1",
+            "published_at": "2015-08-05T08:40:51.620Z",
+            "lat": 0.00,
+            "lng": 0.00,
+        }
+
++ Response 201 (application/json)
+    + Headers
+
+            Request-Id: 01234567-89ab-cdef-0123-456789abcdef
+
+    + Body
+
+            {
+                "id": "2",
+                "title": "Sogo滿5000折500",
+                "description": "缺1",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "lat": 0.00,
+                "lng": 0.00,
+            }
