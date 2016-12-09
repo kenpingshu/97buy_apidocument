@@ -1,0 +1,186 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# api EVENT
+
+Polls is a simple API allowing consumers to view polls and vote in them.
+
+## EVENT CREATE [/events]
+
+### 新增任務 [POST]
++ Request (application/json)
+        
+            {
+                
+                "subject": "衛生紙兩串100",
+                "member_id": "10",
+                "description":"屈臣氏限時特價",
+                "published_at": "2016-12-01T08:40:51.620Z",
+                "start_at": "2016-12-01T08:40:51.620Z",
+                "end_at": "2016-12-30T08:40:51.620Z",
+                "update_time": "",
+                "price":100
+                "location_lat":"",
+                "location_lon":"",
+                
+            }
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "id":10,
+                "subject": "衛生紙兩串100",
+                "member_id": "10",
+                "description":"屈臣氏限時特價",
+                "published_at": "2016-12-01T08:40:51.620Z",
+                "start_at": "2016-12-01T08:40:51.620Z",
+                "end_at": "2016-12-30T08:40:51.620Z",
+                "update_time": "",
+                "price":100
+                "location_lat":"",
+                "location_lon":"",
+                
+            }
+        ]
+
+## EVENT EDIT [/events/modify/]
+### 修改任務 [PUT]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id":1,
+                "subject": "衛生紙兩串100兩串100",
+                "description":"屈臣氏限時特價",
+                "start_at": "2016-12-11T08:40:51.620Z",
+                "end_at": "2016-12-20T08:40:51.620Z",
+                "update_time": "",
+                "price":100
+                "location_lat":"",
+                "location_lon":"",
+                
+            }
+        ]
++ Response 204 (application/json)
+
+        [
+            {
+                "id":1,
+                "subject": "衛生紙兩串100兩串100",
+                "description":"屈臣氏限時特價",
+                "start_at": "2016-12-11T08:40:51.620Z",
+                "end_at": "2016-12-20T08:40:51.620Z",
+                "update_time": "",
+                "price":100
+                "location_lat":"",
+                "location_lon":"",
+                
+            }
+        ]
+### 刪除任務 [DELETE]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "subject": "衛生紙兩串100",
+                "description":"屈臣氏限時特價",
+                "published_at": "2016-12-01T08:40:51.620Z",
+                "start_at": "2016-12-01T08:40:51.620Z",
+                "end_at": "2016-12-30T08:40:51.620Z",
+                "price":100
+                "location_lat":"",
+                "location_lon":"",
+                
+            }
+        ]
+### 取得任務 [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 1
+                "subject": "衛生紙兩串100",
+                "description":"屈臣氏限時特價",
+                "published_at": "2016-12-01T08:40:51.620Z",
+                "start_at": "2016-12-01T08:40:51.620Z",
+                "end_at": "2016-12-30T08:40:51.620Z",
+                "price":100
+                "location_lat":"",
+                "location_lon":"",
+                "num":2
+            },
+            {
+                "id": 2
+                "subject": "團購手工餅乾",
+                "description":"純天然手工",
+                "published_at": "2016-12-01T08:40:51.620Z",
+                "start_at": "2016-12-01T08:40:51.620Z",
+                "end_at": "2016-12-30T08:40:51.620Z",
+                "price":100
+                "location_lat":"",
+                "location_lon":"",
+                "num":3
+            },
+            {
+                "id": 3
+                "subject": "化妝品滿五千送五百",
+                "description":"新光三越周年慶鳩團",
+                "published_at": "2016-09-01T08:40:51.620Z",
+                "start_at": "2016-09-11T08:40:51.620Z",
+                "end_at": "2016-09-30T08:40:51.620Z",
+                "price":5000
+                "location_lat":"",
+                "location_lon":"",
+                "num":10
+            }
+        ]
+
+### Create a New Question [POST]
+
+You may create your own question using this action. It takes a JSON
+object containing a question and a collection of answers in the
+form of choices.
+
++ Request (application/json)
+
+        {
+            "question": "Favourite programming language?",
+            "choices": [
+                "Swift",
+                "Python",
+                "Objective-C",
+                "Ruby"
+            ]
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /questions/2
+
+    + Body
+
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                    {
+                        "choice": "Swift",
+                        "votes": 0
+                    }, {
+                        "choice": "Python",
+                        "votes": 0
+                    }, {
+                        "choice": "Objective-C",
+                        "votes": 0
+                    }, {
+                        "choice": "Ruby",
+                        "votes": 0
+                    }
+                ]
+            }
