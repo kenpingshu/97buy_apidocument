@@ -12,6 +12,12 @@ HOST: http://97buy.apiblueprint.org/
 ### List All Tasks [GET]
 
 取得所有任務
++ Request (application/json)
+
+    + Header
+
+        Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAxMC9zaWduaW4iLCJpYXQiOjE0ODEyOTAxNTIsImV4cCI6MTQ4MTI5Mzc1MiwibmJmIjoxNDgxMjkwMTUyLCJqdGkiOiIzNDVhNjNiNmQ2NWU1YWRkN2ViODJhNGM4YTAzNzJhZiJ9.bpuYr680kk6BWcDHk8c2Hw8uzNrDpOpnTg67JqC4pok
+
 + Response 200 (application/json)
 
     + Headers
@@ -55,13 +61,19 @@ HOST: http://97buy.apiblueprint.org/
 新增任務
 + Request (application/json)
 
-        {
-            "title": "康是美買3送1",
-            "description": "缺2",
-            "published_at": "2015-08-05T08:40:51.620Z",
-            "lat": 0.00,
-            "lng": 0.00,
-        }
+    + Header
+
+        Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAxMC9zaWduaW4iLCJpYXQiOjE0ODEyOTAxNTIsImV4cCI6MTQ4MTI5Mzc1MiwibmJmIjoxNDgxMjkwMTUyLCJqdGkiOiIzNDVhNjNiNmQ2NWU1YWRkN2ViODJhNGM4YTAzNzJhZiJ9.bpuYr680kk6BWcDHk8c2Hw8uzNrDpOpnTg67JqC4pok
+
+    + Body
+
+          {
+              "title": "康是美買3送1",
+              "description": "缺2",
+              "published_at": "2015-08-05T08:40:51.620Z",
+              "lat": 0.00,
+              "lng": 0.00,
+          }
 
 + Response 201 (application/json)
 
@@ -89,6 +101,12 @@ HOST: http://97buy.apiblueprint.org/
 ### Get Single Task [GET]
 
 取得指定任務
++ Request (application/json)
+
+    + Headers
+
+        Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAxMC9zaWduaW4iLCJpYXQiOjE0ODEyOTAxNTIsImV4cCI6MTQ4MTI5Mzc1MiwibmJmIjoxNDgxMjkwMTUyLCJqdGkiOiIzNDVhNjNiNmQ2NWU1YWRkN2ViODJhNGM4YTAzNzJhZiJ9.bpuYr680kk6BWcDHk8c2Hw8uzNrDpOpnTg67JqC4pok
+
 + Response 200 (application/json)
     + Headers
 
@@ -108,8 +126,13 @@ HOST: http://97buy.apiblueprint.org/
 ### Update Single Task [PUT]
 
 更新指定任務
-+ Request
++ Request (application/json)
+    + Headers
 
+        Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAxMC9zaWduaW4iLCJpYXQiOjE0ODEyOTAxNTIsImV4cCI6MTQ4MTI5Mzc1MiwibmJmIjoxNDgxMjkwMTUyLCJqdGkiOiIzNDVhNjNiNmQ2NWU1YWRkN2ViODJhNGM4YTAzNzJhZiJ9.bpuYr680kk6BWcDHk8c2Hw8uzNrDpOpnTg67JqC4pok
+
+    + Body
+    
         {
             "title": "Sogo滿5000折500",
             "description": "缺1",
