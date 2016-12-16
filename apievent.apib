@@ -1,29 +1,45 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://978.com.tw/
 
-# api EVENT
+# EVENT API
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+978 任務回傳狀態
 
-## EVENT CREATE [/events]
+欄位說明
+
+    {
+    
+        id:             任務編號
+        member_id:      會員編號
+        subject:        主旨
+        description:    任務描述
+        status:         任務狀態(open/close/expired)
+        published_at:   發表時間
+        start_at:       任務開始時間
+        end_at:         任務結束時間
+        price:          金額
+        location_lat:   經度
+        location_lon:   緯度
+        num:            參加人數上限
+    }
+
+## EVENT CREATE [/events/]
 
 ### 新增任務 [POST]
 + Request (application/json)
-        
-            {
-                
-                "subject": "衛生紙兩串100",
-                "member_id": "10",
-                "description":"屈臣氏限時特價",
-                "published_at": "2016-12-01T08:40:51.620Z",
-                "start_at": "2016-12-01T08:40:51.620Z",
-                "end_at": "2016-12-30T08:40:51.620Z",
-                "update_time": "",
-                "price":100
-                "location_lat":"",
-                "location_lon":"",
-                
-            }
+
+        {
+            "member_id": 10,
+            "subject": "衛生紙兩串100兩串100",
+            "description":"屈臣氏限時特價",
+            "published_at": "2016-12-01T08:40:51.620Z",
+            "start_at": "2016-12-01T08:40:51.620Z",
+            "end_at": "2016-12-30T08:40:51.620Z",
+            "update_time": "",
+            "price":100,
+            "location_lat":"",
+            "location_lon":""
+        }
         
 + Response 200 (application/json)
 
@@ -33,20 +49,32 @@ Polls is a simple API allowing consumers to view polls and vote in them.
                 "subject": "衛生紙兩串100",
                 "member_id": "10",
                 "description":"屈臣氏限時特價",
+                "status":"open",
                 "published_at": "2016-12-01T08:40:51.620Z",
                 "start_at": "2016-12-01T08:40:51.620Z",
                 "end_at": "2016-12-30T08:40:51.620Z",
                 "update_time": "",
-                "price":100
+                "price":100,
                 "location_lat":"",
                 "location_lon":"",
                 
             }
         ]
 
-## EVENT EDIT [/events/modify/]
+## EVENT EDIT [/events/modify/{id}/]
 ### 修改任務 [PUT]
+需檢查該會員可更新此任務
 
++ Request (application/json)
+
+        {
+            "member_id": 1,
+            "subject": "衛生紙兩串100兩串100",
+            "description":"屈臣氏限時特價",
+            "price":100,
+            "update_time": "now"
+        }
+        
 + Response 200 (application/json)
 
         [
@@ -57,29 +85,19 @@ Polls is a simple API allowing consumers to view polls and vote in them.
                 "start_at": "2016-12-11T08:40:51.620Z",
                 "end_at": "2016-12-20T08:40:51.620Z",
                 "update_time": "",
-                "price":100
+                "price":100,
                 "location_lat":"",
                 "location_lon":"",
                 
             }
         ]
+        
 + Response 204 (application/json)
 
-        [
-            {
-                "id":1,
-                "subject": "衛生紙兩串100兩串100",
-                "description":"屈臣氏限時特價",
-                "start_at": "2016-12-11T08:40:51.620Z",
-                "end_at": "2016-12-20T08:40:51.620Z",
-                "update_time": "",
-                "price":100
-                "location_lat":"",
-                "location_lon":"",
-                
-            }
-        ]
+        
+## EVENT DELETE [/events/remove/{id}/]
 ### 刪除任務 [DELETE]
+需檢查該會員可刪除此任務
 
 + Response 200 (application/json)
 
@@ -96,15 +114,29 @@ Polls is a simple API allowing consumers to view polls and vote in them.
                 
             }
         ]
-### 取得任務 [GET]
+        
+## EVENT GET [/events/all/]
+### 取得所有任務 [GET]
+取得附近所有可執行任務,預設50筆資料
 
++ Request (application/json)
+
+        {
+            "lat": "",
+            "lng": "",
+            "count":50,
+            "status":"open"
+        }
+        
 + Response 200 (application/json)
 
         [
             {
-                "id": 1
+                "id": 1,
+                "member_id": "10",
                 "subject": "衛生紙兩串100",
                 "description":"屈臣氏限時特價",
+                "status":"open",
                 "published_at": "2016-12-01T08:40:51.620Z",
                 "start_at": "2016-12-01T08:40:51.620Z",
                 "end_at": "2016-12-30T08:40:51.620Z",
@@ -114,9 +146,11 @@ Polls is a simple API allowing consumers to view polls and vote in them.
                 "num":2
             },
             {
-                "id": 2
+                "id": 2,
+                "member_id": 8,
                 "subject": "團購手工餅乾",
                 "description":"純天然手工",
+                "status":"open",
                 "published_at": "2016-12-01T08:40:51.620Z",
                 "start_at": "2016-12-01T08:40:51.620Z",
                 "end_at": "2016-12-30T08:40:51.620Z",
@@ -126,9 +160,11 @@ Polls is a simple API allowing consumers to view polls and vote in them.
                 "num":3
             },
             {
-                "id": 3
+                "id": 3,
+                "member_id": 8,
                 "subject": "化妝品滿五千送五百",
                 "description":"新光三越周年慶鳩團",
+                "status":"open",
                 "published_at": "2016-09-01T08:40:51.620Z",
                 "start_at": "2016-09-11T08:40:51.620Z",
                 "end_at": "2016-09-30T08:40:51.620Z",
@@ -138,49 +174,60 @@ Polls is a simple API allowing consumers to view polls and vote in them.
                 "num":10
             }
         ]
-
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
-
+      
+## MEMBER EVENT GET [/events/{member_id}/]
+### 取得特定會員任務 [GET]
+取得該會員所有任務
 + Request (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+            "member_id": "1"
+
         }
 
-+ Response 201 (application/json)
++ Response 200 (application/json)
 
-    + Headers
-
-            Location: /questions/2
-
-    + Body
-
+        [
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
+                "id": 1,
+                "member_id": 1,
+                "subject": "衛生紙兩串100",
+                "description":"屈臣氏限時特價",
+                "status":"open",
+                "published_at": "2016-12-01T08:40:51.620Z",
+                "start_at": "2016-12-01T08:40:51.620Z",
+                "end_at": "2016-12-30T08:40:51.620Z",
+                "price":100
+                "location_lat":"",
+                "location_lon":"",
+                "num":2
+            },
+            {
+                "id": 2,
+                "member_id": 1,
+                "subject": "團購手工餅乾",
+                "description":"純天然手工",
+                "status":"close",
+                "published_at": "2016-12-01T08:40:51.620Z",
+                "start_at": "2016-12-01T08:40:51.620Z",
+                "end_at": "2016-12-30T08:40:51.620Z",
+                "price":100
+                "location_lat":"",
+                "location_lon":"",
+                "num":3
+            },
+            {
+                "id": 3,
+                "member_id": 1,
+                "subject": "化妝品滿五千送五百",
+                "description":"新光三越周年慶鳩團",
+                "status":"expired",
+                "published_at": "2016-09-01T08:40:51.620Z",
+                "start_at": "2016-09-11T08:40:51.620Z",
+                "end_at": "2016-09-30T08:40:51.620Z",
+                "price":5000
+                "location_lat":"",
+                "location_lon":"",
+                "num":10
             }
+        ]
