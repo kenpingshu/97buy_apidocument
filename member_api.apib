@@ -1,22 +1,30 @@
 FORMAT: 1A
 HOST: http://polls.apiblueprint.org/
 
-# 97buy user api
+# 97buy user api 規格文件
 
-97buy user API規格文件
+欄位說明
+* id:             會員編號(ex:1)  
+* fullname:       真實姓名(ex:賴璽丞)  
+* nickname:       綽號(ex:賴大帥)  
+* email:          電子郵件(ex:ryan20151016@gmail.com)  
+* pwd:            密碼(ex:123456)  
+* cellphone       手機(ex:0952123456)  
+* birhtday        生日(ex:1988-08-26)  
+* gender          性別(1:男, 2:女)  
+* level           會員等級(0:管理者, 1:一般會員)
 
-# Group User
-
-## Users Collection [/users]
+## 路由/users [/users]
 
 ### List All Users [GET]
 
 取得所有會員
 + Request
 
-        {
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAxMC9zaWduaW4iLCJpYXQiOjE0ODEyOTAxNTIsImV4cCI6MTQ4MTI5Mzc1MiwibmJmIjoxNDgxMjkwMTUyLCJqdGkiOiIzNDVhNjNiNmQ2NWU1YWRkN2ViODJhNGM4YTAzNzJhZiJ9.bpuYr680kk6BWcDHk8c2Hw8uzNrDpOpnTg67JqC4pok",
-        }
+    + Headers
+    
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAxMC9zaWduaW4iLCJpYXQiOjE0ODEyOTAxNTIsImV4cCI6MTQ4MTI5Mzc1MiwibmJmIjoxNDgxMjkwMTUyLCJqdGkiOiIzNDVhNjNiNmQ2NWU1YWRkN2ViODJhNGM4YTAzNzJhZiJ9.bpuYr680kk6BWcDHk8c2Hw8uzNrDpOpnTg67JqC4pok
+
 
 + Response 200 (application/json)
 
