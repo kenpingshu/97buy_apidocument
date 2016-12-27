@@ -10,7 +10,7 @@ HOST: http://polls.apiblueprint.org/
 * email:          電子郵件(ex:ryan20151016@gmail.com)  
 * pwd:            密碼(ex:123456)  
 * cellphone       手機(ex:0952123456)  
-* birhtday        生日(ex:1988-08-26)  
+* birhtday        生日(ex:2006-01-01T12:59:59Z)  
 * gender          性別(1:男, 2:女)  
 * level           會員等級(0:管理者, 1:一般會員)
 
@@ -37,35 +37,57 @@ HOST: http://polls.apiblueprint.org/
             [
                 {
                     "id": "1",
+                    "fullname": "管理者",
+                    "nickname": "管理者",
+                    "email": "admin@gmail.com",
+                    "pwd": "123455678",
+                    "cellphone": "0952123456",
+                    "birthday": "2006-01-01T12:59:59Z",
+                    "gender": "1",
+                    "level": "0"
+                },
+                {
+                    "id": "2",
                     "fullname":"賴璽丞",
                     "nickname": "賴大帥",
                     "email": "ryan20151016@gmail.com",
                     "pwd": "123455678",
                     "cellphone": "0952123456",
-                    "birthday": "1988-08-26",
-                    "gender": "男",
-                    "level": "0"
+                    "birthday": "2006-01-01T12:59:59Z",
+                    "gender": "1",
+                    "level": "1"
                 },
                 {
-                    "id": "2",
+                    "id": "3",
                     "fullname":"許東篁",
                     "nickname": "許心臟",
                     "email": "ken@gmail.com",
                     "pwd": "9999999",
                     "cellphone": "0952654321",
-                    "birthday": "1983-05-23",
-                    "gender": "男",
+                    "birthday": "2000-01-01T12:59:59Z",
+                    "gender": "1",
                     "level": "1"
                 },
                 {
-                    "id": "3",
+                    "id": "4",
                     "fullname":"吳廣誠",
                     "nickname": "小廢物",
                     "email": "jeff@gmail.com",
                     "pwd": "88888",
                     "cellphone": "0952999999",
-                    "birthday": "1989-01-06",
-                    "gender": "女",
+                    "birthday": "2001-01-01T12:59:59Z",
+                    "gender": "1",
+                    "level": "1"
+                },
+                {
+                    "id": "5",
+                    "fullname":"李沛辰",
+                    "nickname": "城市一姐",
+                    "email": "latte@gmail.com",
+                    "pwd": "8883488",
+                    "cellphone": "0952999988",
+                    "birthday": "2001-01-01T12:59:59Z",
+                    "gender": "2",
                     "level": "1"
                 }
             ]
@@ -75,19 +97,24 @@ HOST: http://polls.apiblueprint.org/
 新增會員
 + Request
 
-        {
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAxMC9zaWduaW4iLCJpYXQiOjE0ODEyOTAxNTIsImV4cCI6MTQ4MTI5Mzc1MiwibmJmIjoxNDgxMjkwMTUyLCJqdGkiOiIzNDVhNjNiNmQ2NWU1YWRkN2ViODJhNGM4YTAzNzJhZiJ9.bpuYr680kk6BWcDHk8c2Hw8uzNrDpOpnTg67JqC4pok",
-            "fullname":"賴璽丞",
-            "nickname": "賴大帥",
-            "email": "ryan20151016@gmail.com",
-            "pwd": "123455678",
-            "cellphone": "0952123456",
-            "birthday": "1988-08-26",
-            "gender": "男",
-            "level": "1",
-        }
+    + Headers
 
-+ Response 200 (application/json)
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAxMC9zaWduaW4iLCJpYXQiOjE0ODEyOTAxNTIsImV4cCI6MTQ4MTI5Mzc1MiwibmJmIjoxNDgxMjkwMTUyLCJqdGkiOiIzNDVhNjNiNmQ2NWU1YWRkN2ViODJhNGM4YTAzNzJhZiJ9.bpuYr680kk6BWcDHk8c2Hw8uzNrDpOpnTg67JqC4pok
+
+    + Body
+
+            {
+                "fullname":"賴璽丞",
+                "nickname": "賴大帥",
+                "email": "ryan20151016@gmail.com",
+                "pwd": "123455678",
+                "cellphone": "0952123456",
+                "birthday": "2001-01-01T12:59:59Z",
+                "gender": "1",
+                "level": "1",
+            }
+
++ Response 201 (application/json)
 
     + Headers
 
@@ -96,24 +123,32 @@ HOST: http://polls.apiblueprint.org/
     + Body
 
             {
+                "id": "1",
                 "fullname":"賴璽丞",
                 "nickname": "賴大帥",
                 "email": "ryan20151016@gmail.com",
                 "pwd": "123455678",
                 "cellphone": "0952123456",
-                "birthday": "1988-08-26",
-                "gender": "男",
+                "birthday": "2001-01-01T12:59:59Z",
+                "gender": "1",
                 "level": "1",
             }
 
-## User Collections [/users/{user_id}]
+## 路由 [/users/{user_id}]
 
 + Parameters
-    + user_id (required, number, `2`) ... ID of the user in form of an integer
+    + user_id (required, number, `1`) ... ID of the user in form of an integer
 
 ### Get Single user [GET]
 
 取得單一會員
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAxMC9zaWduaW4iLCJpYXQiOjE0ODEyOTAxNTIsImV4cCI6MTQ4MTI5Mzc1MiwibmJmIjoxNDgxMjkwMTUyLCJqdGkiOiIzNDVhNjNiNmQ2NWU1YWRkN2ViODJhNGM4YTAzNzJhZiJ9.bpuYr680kk6BWcDHk8c2Hw8uzNrDpOpnTg67JqC4pok
+
 + Response 200 (application/json)
     + Headers
 
@@ -127,8 +162,8 @@ HOST: http://polls.apiblueprint.org/
                 "email": "ryan20151016@gmail.com",
                 "pwd": "123455678",
                 "cellphone": "0952123456",
-                "birthday": "1988-08-26",
-                "gender": "男",
+                "birthday": "2001-01-01T12:59:59Z",
+                "gender": "1",
                 "level": "1",
             }
 
@@ -137,19 +172,23 @@ HOST: http://polls.apiblueprint.org/
 更新會員
 + Request
 
-        {
-            "id": "2",
-            "fullname":"許東篁",
-            "nickname": "許心臟",
-            "email": "ken@gmail.com",
-            "pwd": "9999999",
-            "cellphone": "0952654321",
-            "birthday": "1983-05-23",
-            "gender": "男",
-            "level": "1",
-        }
+    + Headers
 
-+ Response 200 (application/json)
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAxMC9zaWduaW4iLCJpYXQiOjE0ODEyOTAxNTIsImV4cCI6MTQ4MTI5Mzc1MiwibmJmIjoxNDgxMjkwMTUyLCJqdGkiOiIzNDVhNjNiNmQ2NWU1YWRkN2ViODJhNGM4YTAzNzJhZiJ9.bpuYr680kk6BWcDHk8c2Hw8uzNrDpOpnTg67JqC4pok
+    + Body
+
+            {
+                "fullname":"許東篁",
+                "nickname": "許心臟",
+                "email": "ken@gmail.com",
+                "pwd": "9999999",
+                "cellphone": "0952654321",
+                "birthday": "2001-01-01T12:59:59Z",
+                "gender": "2",
+                "level": "1",
+            }
+
++ Response 201 (application/json)
     + Headers
 
             Request-Id: 01234567-89ab-cdef-0123-456789abcdef
@@ -157,14 +196,13 @@ HOST: http://polls.apiblueprint.org/
     + Body
 
             {
-                "id": "2",
                 "fullname":"許東篁",
                 "nickname": "許心臟",
                 "email": "ken@gmail.com",
                 "pwd": "9999999",
                 "cellphone": "0952654321",
-                "birthday": "1983-05-23",
-                "gender": "男",
+                "birthday": "2001-01-01T12:59:59Z",
+                "gender": "2",
                 "level": "1",
             }
 
@@ -175,34 +213,12 @@ HOST: http://polls.apiblueprint.org/
 刪除會員
 + Request
 
-        {
-            "id": "2",
-            "fullname":"許東篁",
-            "nickname": "許心臟",
-            "email": "ken@gmail.com",
-            "pwd": "9999999",
-            "cellphone": "0952654321",
-            "birthday": "1983-05-23",
-            "gender": "男",
-            "level": "1",
-        }
+    + Headers
+
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAxMC9zaWduaW4iLCJpYXQiOjE0ODEyOTAxNTIsImV4cCI6MTQ4MTI5Mzc1MiwibmJmIjoxNDgxMjkwMTUyLCJqdGkiOiIzNDVhNjNiNmQ2NWU1YWRkN2ViODJhNGM4YTAzNzJhZiJ9.bpuYr680kk6BWcDHk8c2Hw8uzNrDpOpnTg67JqC4pok
 
 + Response 200 (application/json)
 
     + Headers
 
-            Location: /member/1
-
-    + Body
-
-            {
-                "id": "2",
-                "fullname":"許東篁",
-                "nickname": "許心臟",
-                "email": "ken@gmail.com",
-                "pwd": "9999999",
-                "cellphone": "0952654321",
-                "birthday": "1983-05-23",
-                "gender": "男",
-                "level": "1",
-            }
+            Location: /user/1
