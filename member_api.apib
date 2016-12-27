@@ -13,6 +13,7 @@ HOST: http://polls.apiblueprint.org/
 * birhtday        生日(ex:2006-01-01T12:59:59Z)  
 * gender          性別(1:男, 2:女)  
 * level           會員等級(0:管理者, 1:一般會員)
+* status          狀態(1:合法會員, 2:非法會員)
 
 ## 路由/users [/users]
 
@@ -44,7 +45,8 @@ HOST: http://polls.apiblueprint.org/
                     "cellphone": "0952123456",
                     "birthday": "2006-01-01T12:59:59Z",
                     "gender": "1",
-                    "level": "0"
+                    "level": "0",
+                    "status": "1"
                 },
                 {
                     "id": "2",
@@ -55,7 +57,8 @@ HOST: http://polls.apiblueprint.org/
                     "cellphone": "0952123456",
                     "birthday": "2006-01-01T12:59:59Z",
                     "gender": "1",
-                    "level": "1"
+                    "level": "1",
+                    "status": "1"
                 },
                 {
                     "id": "3",
@@ -66,7 +69,8 @@ HOST: http://polls.apiblueprint.org/
                     "cellphone": "0952654321",
                     "birthday": "2000-01-01T12:59:59Z",
                     "gender": "1",
-                    "level": "1"
+                    "level": "1",
+                    "status": "2"
                 },
                 {
                     "id": "4",
@@ -77,7 +81,8 @@ HOST: http://polls.apiblueprint.org/
                     "cellphone": "0952999999",
                     "birthday": "2001-01-01T12:59:59Z",
                     "gender": "1",
-                    "level": "1"
+                    "level": "1",
+                    "status": "2"
                 },
                 {
                     "id": "5",
@@ -88,7 +93,8 @@ HOST: http://polls.apiblueprint.org/
                     "cellphone": "0952999988",
                     "birthday": "2001-01-01T12:59:59Z",
                     "gender": "2",
-                    "level": "1"
+                    "level": "1",
+                    "status": "1"
                 }
             ]
 
@@ -112,12 +118,14 @@ HOST: http://polls.apiblueprint.org/
                 "birthday": "2001-01-01T12:59:59Z",
                 "gender": "1",
                 "level": "1",
+                "status": "1"
             }
 
 + Response 201 (application/json)
 
     + Headers
 
+            Request-Id: 01234567-89ab-cdef-0123-456789abcdef,
             Location: /user/1
 
     + Body
@@ -132,6 +140,7 @@ HOST: http://polls.apiblueprint.org/
                 "birthday": "2001-01-01T12:59:59Z",
                 "gender": "1",
                 "level": "1",
+                "status": "1"
             }
 
 ## 路由 [/users/{user_id}]
@@ -165,6 +174,7 @@ HOST: http://polls.apiblueprint.org/
                 "birthday": "2001-01-01T12:59:59Z",
                 "gender": "1",
                 "level": "1",
+                "status": "1"
             }
 
 ### Update Single User [PUT]
@@ -186,6 +196,7 @@ HOST: http://polls.apiblueprint.org/
                 "birthday": "2001-01-01T12:59:59Z",
                 "gender": "2",
                 "level": "1",
+                "status": "1"
             }
 
 + Response 201 (application/json)
@@ -203,7 +214,7 @@ HOST: http://polls.apiblueprint.org/
                 "cellphone": "0952654321",
                 "birthday": "2001-01-01T12:59:59Z",
                 "gender": "2",
-                "level": "1",
+                "level": "1"
             }
 
 
@@ -218,7 +229,3 @@ HOST: http://polls.apiblueprint.org/
             Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAxMC9zaWduaW4iLCJpYXQiOjE0ODEyOTAxNTIsImV4cCI6MTQ4MTI5Mzc1MiwibmJmIjoxNDgxMjkwMTUyLCJqdGkiOiIzNDVhNjNiNmQ2NWU1YWRkN2ViODJhNGM4YTAzNzJhZiJ9.bpuYr680kk6BWcDHk8c2Hw8uzNrDpOpnTg67JqC4pok
 
 + Response 200 (application/json)
-
-    + Headers
-
-            Location: /user/1
