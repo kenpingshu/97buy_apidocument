@@ -1,0 +1,264 @@
+FORMAT: 1A
+HOST: http://978.com.tw/
+
+# EVENT API
+
+978 任務回傳狀態
+
+欄位說明
+
+    {
+    
+        id:             任務編號
+        member_id:      會員編號
+        subject:        主旨
+        description:    任務描述
+        status:         任務狀態(open/close/expired)
+        published_at:   發表時間
+        start_at:       任務開始時間
+        end_at:         任務結束時間
+        lat:            經度
+        lng:            緯度
+        num:            參加人數上限
+    }
+
+## BASE URL [/events]
+
+
+### 新增任務 [POST]
+新增任務
++ Request
+
+    + Headers
+
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAxMC9zaWduaW4iLCJpYXQiOjE0ODEyOTAxNTIsImV4cCI6MTQ4MTI5Mzc1MiwibmJmIjoxNDgxMjkwMTUyLCJqdGkiOiIzNDVhNjNiNmQ2NWU1YWRkN2ViODJhNGM4YTAzNzJhZiJ9.bpuYr680kk6BWcDHk8c2Hw8uzNrDpOpnTg67JqC4pok
+
+    + Body
+
+            {
+                "member_id": 10,
+                "subject": "衛生紙兩串100兩串100",
+                "description":"屈臣氏限時特價",
+                "published_at": "2016-12-01T08:40:51.620Z",
+                "start_at": "2016-12-01T08:40:51.620Z",
+                "end_at": "2016-12-30T08:40:51.620Z",
+                "update_time": "",
+                "lat":"",
+                "lng":""
+            }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Request-Id: 01234567-89ab-cdef-0123-456789abcdef,
+            Location: /user/1
+
+    + Body
+
+            {
+                "member_id": 10,
+                "subject": "衛生紙兩串100兩串100",
+                "description":"屈臣氏限時特價",
+                "published_at": "2016-12-01T08:40:51.620Z",
+                "start_at": "2016-12-01T08:40:51.620Z",
+                "end_at": "2016-12-30T08:40:51.620Z",
+                "update_time": "",
+                "lat":"",
+                "lng":""
+            }
+
+  
+### 取得所有任務 [GET]
+取得附近所有可執行任務,預設50筆資料
+
++ Request 
+    + Headers
+
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAxMC9zaWduaW4iLCJpYXQiOjE0ODEyOTAxNTIsImV4cCI6MTQ4MTI5Mzc1MiwibmJmIjoxNDgxMjkwMTUyLCJqdGkiOiIzNDVhNjNiNmQ2NWU1YWRkN2ViODJhNGM4YTAzNzJhZiJ9.bpuYr680kk6BWcDHk8c2Hw8uzNrDpOpnTg67JqC4pok
+
+    + Body
+    
+            {
+                "lat": "",
+                "lng": "",
+                "count":50,
+                "status":"open"
+            }
+        
++ Response 200 (application/json)
+    + Headers
+
+            Request-Id: 01234567-89ab-cdef-0123-456789abcdef
+
+    + Body
+    
+            [
+                {
+                    "id": 1,
+                    "member_id": "10",
+                    "subject": "衛生紙兩串100",
+                    "description":"屈臣氏限時特價",
+                    "status":"open",
+                    "published_at": "2016-12-01T08:40:51.620Z",
+                    "start_at": "2016-12-01T08:40:51.620Z",
+                    "end_at": "2016-12-30T08:40:51.620Z",
+                    
+                    "lat":"",
+                    "lng":"",
+                    "num":2
+                },
+                {
+                    "id": 2,
+                    "member_id": 8,
+                    "subject": "團購手工餅乾",
+                    "description":"純天然手工",
+                    "status":"open",
+                    "published_at": "2016-12-01T08:40:51.620Z",
+                    "start_at": "2016-12-01T08:40:51.620Z",
+                    "end_at": "2016-12-30T08:40:51.620Z",
+                    
+                    "lat":"",
+                    "lng":"",
+                    "num":3
+                },
+                {
+                    "id": 3,
+                    "member_id": 8,
+                    "subject": "化妝品滿五千送五百",
+                    "description":"新光三越周年慶鳩團",
+                    "status":"open",
+                    "published_at": "2016-09-01T08:40:51.620Z",
+                    "start_at": "2016-09-11T08:40:51.620Z",
+                    "end_at": "2016-09-30T08:40:51.620Z",
+                    
+                    "lat":"",
+                    "lng":"",
+                    "num":10
+                }
+            ]
+
+### 對id做動作  [/events/{id}]
+#### 修改任務 [PUT]
+需檢查該會員可更新此任務
+
++ Request 
+    + Headers
+
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAxMC9zaWduaW4iLCJpYXQiOjE0ODEyOTAxNTIsImV4cCI6MTQ4MTI5Mzc1MiwibmJmIjoxNDgxMjkwMTUyLCJqdGkiOiIzNDVhNjNiNmQ2NWU1YWRkN2ViODJhNGM4YTAzNzJhZiJ9.bpuYr680kk6BWcDHk8c2Hw8uzNrDpOpnTg67JqC4pok
+
+    + Body
+
+            {
+                "member_id": 1,
+                "subject": "衛生紙兩串100兩串100",
+                "description":"屈臣氏限時特價",
+                
+                "update_time": "now"
+            }
+        
++ Response 201 (application/json)
+    + Headers
+
+            Request-Id: 01234567-89ab-cdef-0123-456789abcdef
+
+    + Body
+    
+            [
+                {
+                    "id":1,
+                    "subject": "衛生紙兩串100兩串100",
+                    "description":"屈臣氏限時特價",
+                    "start_at": "2016-12-11T08:40:51.620Z",
+                    "end_at": "2016-12-20T08:40:51.620Z",
+                    "update_time": "",
+                    
+                    "lat":"",
+                    "lng":"",
+                    
+                }
+            ]
+        
+
+        
+#### 刪除任務 [DELETE]
+需檢查該會員可刪除此任務
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAxMC9zaWduaW4iLCJpYXQiOjE0ODEyOTAxNTIsImV4cCI6MTQ4MTI5Mzc1MiwibmJmIjoxNDgxMjkwMTUyLCJqdGkiOiIzNDVhNjNiNmQ2NWU1YWRkN2ViODJhNGM4YTAzNzJhZiJ9.bpuYr680kk6BWcDHk8c2Hw8uzNrDpOpnTg67JqC4pok
+
++ Response 200 (application/json)
+
+        
+
+### Filter URL [/events?member_id=10&start_at=2016-12-01T08:40:51.620Z&end_at=2016-12-30T08:40:51.620Z]
+#### 過濾特定欄位 [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAxMC9zaWduaW4iLCJpYXQiOjE0ODEyOTAxNTIsImV4cCI6MTQ4MTI5Mzc1MiwibmJmIjoxNDgxMjkwMTUyLCJqdGkiOiIzNDVhNjNiNmQ2NWU1YWRkN2ViODJhNGM4YTAzNzJhZiJ9.bpuYr680kk6BWcDHk8c2Hw8uzNrDpOpnTg67JqC4pok
+    
+    + Body
+    
+            {
+                "member_id": "1"
+            }
+            
+
++ Response 200 (application/json)
+    + Headers
+
+            Request-Id: 01234567-89ab-cdef-0123-456789abcdef
+
+    + Body
+    
+            [
+                {
+                    "id": 1,
+                    "member_id": 1,
+                    "subject": "衛生紙兩串100",
+                    "description":"屈臣氏限時特價",
+                    "status":"open",
+                    "published_at": "2016-12-01T08:40:51.620Z",
+                    "start_at": "2016-12-01T08:40:51.620Z",
+                    "end_at": "2016-12-30T08:40:51.620Z",
+                    
+                    "lat":"",
+                    "lng":"",
+                    "num":2
+                },
+                {
+                    "id": 2,
+                    "member_id": 1,
+                    "subject": "團購手工餅乾",
+                    "description":"純天然手工",
+                    "status":"close",
+                    "published_at": "2016-12-01T08:40:51.620Z",
+                    "start_at": "2016-12-01T08:40:51.620Z",
+                    "end_at": "2016-12-30T08:40:51.620Z",
+                    
+                    "lat":"",
+                    "lng":"",
+                    "num":3
+                },
+                {
+                    "id": 3,
+                    "member_id": 1,
+                    "subject": "化妝品滿五千送五百",
+                    "description":"新光三越周年慶鳩團",
+                    "status":"expired",
+                    "published_at": "2016-09-01T08:40:51.620Z",
+                    "start_at": "2016-09-11T08:40:51.620Z",
+                    "end_at": "2016-09-30T08:40:51.620Z",
+                    
+                    "lat":"",
+                    "lng":"",
+                    "num":10
+                }
+            ]
+        
